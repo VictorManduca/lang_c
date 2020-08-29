@@ -88,9 +88,10 @@ void showArray(int lenght, int array[lenght])
 
 int checkIfValuesAreEqual(int lenght, int array[lenght])
 {
-  int positionValue = array[0];
+  int position = 0;
+  int positionValue = array[position];
 
-  for (int position; position < lenght; position++)
+  for (position; position < lenght; position++)
   {
     if (array[position] == positionValue)
       return 1;
