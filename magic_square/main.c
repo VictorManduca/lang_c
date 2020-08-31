@@ -12,13 +12,13 @@ int insertItemsInMatrix(int lenght, int matrix[lenght][lenght])
 
 void showMatrix(int lenght, int matrix[lenght][lenght])
 {
-  printf("\n-- Starting shoMatrix --\n");
+  printf("\n-- Starting showMatrix --\n");
 
   for (int line = 0; line < lenght; line++)
     for (int column = 0; column < lenght; column++)
       printf("In position [%d][%d]: %d \n", line, column, matrix[line][column]);
 
-  printf("-- Finishing shoMatrix --\n");
+  printf("-- Finishing showMatrix --\n");
 }
 
 int sumMainDiagonal(int lenght, int matrix[lenght][lenght])
@@ -100,6 +100,44 @@ int checkIfValuesAreEqual(int lenght, int array[lenght])
   }
 }
 
+int flatMatrix(int lenght, int matrix[lenght][lenght], int array[lenght])
+{
+  int position = 0;
+
+  for (int line = 0; line < lenght; line++)
+  {
+    for (int column = 0; column < lenght; column++)
+    {
+      array[position] = matrix[line][column];
+      position++;
+    }
+  }
+}
+
+int checkDuplicatedNumber(int lenght, int array[lenght])
+{
+  int numberAppears = 0;
+  int flag = 0;
+
+  for (int position = 0; position < lenght; position++)
+  {
+    int valueInPosition = array[position];
+
+    if (numberAppears > 1)
+      flag = 1;
+
+    numberAppears = 0;
+
+    for (int positionInArray = 0; positionInArray < lenght; positionInArray++)
+    {
+      if (valueInPosition == array[positionInArray])
+        numberAppears++;
+    }
+  }
+
+  return flag;
+}
+
 int main(void)
 {
   int lenghtMatrix = 0;
@@ -114,6 +152,22 @@ int main(void)
 
   insertItemsInMatrix(lenghtMatrix, matrix);
   showMatrix(lenghtMatrix, matrix);
+
+  int lenghtArray = lenghtMatrix * lenghtMatrix;
+  int flatenMatrix[lenghtArray];
+  flatMatrix(lenghtMatrix, matrix, flatenMatrix);
+  showArray(lenghtArray, flatenMatrix);
+
+  int numberAppearsMoreThanOneTime = 0;
+  numberAppearsMoreThanOneTime = checkDuplicatedNumber(lenghtArray, flatenMatrix);
+
+  printf("%d", numberAppearsMoreThanOneTime);
+
+  if (numberAppearsMoreThanOneTime > 0)
+  {
+    printf("\n -- It is NOT a magic square (you gave duplicated numbers)! :( -- \n");
+    return 0;
+  }
 
   int resultSumMainDiagonal = sumMainDiagonal(lenghtMatrix, matrix);
   int resultSumSecDiagonal = sumSecDiagonal(lenghtMatrix, matrix);
