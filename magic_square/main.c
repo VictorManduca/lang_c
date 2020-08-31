@@ -161,8 +161,6 @@ int main(void)
   int numberAppearsMoreThanOneTime = 0;
   numberAppearsMoreThanOneTime = checkDuplicatedNumber(lenghtArray, flatenMatrix);
 
-  printf("%d", numberAppearsMoreThanOneTime);
-
   if (numberAppearsMoreThanOneTime > 0)
   {
     printf("\n -- It is NOT a magic square (you gave duplicated numbers)! :( -- \n");
